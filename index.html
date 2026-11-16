@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CanOS – Yes, I CanOS.</title>
+<meta name="description" content="CanOS is a fast, beautiful Linux system built on CachyOS with Canvas, its own desktop and the Living Island.">
+<meta property="og:title" content="CanOS – Yes, I CanOS.">
+<meta property="og:description" content="A fast, beautiful Linux system with its own desktop, Canvas.">
+<meta property="og:image" content="screenshots/center.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,300..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --base: #0f0d12; --surface: #201f24; --high: #2b292e;
+  --text: #e6e1e7; --sub: #cac4d1; --accent: #cdbdff; --accent2: #a897e0; --deep: #7a5cff;
+  --r: 28px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--base); color: var(--text);
+  font-family: "Google Sans Flex", "Google Sans", system-ui, sans-serif;
+  line-height: 1.55; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(1120px, 100% - 48px); margin-inline: auto; }
+
+/* Living Island */
+.island-bar { position: fixed; top: 14px; left: 0; right: 0; display: flex; justify-content: center; z-index: 50; pointer-events: none; }
+.island {
+  pointer-events: auto; background: #000; color: var(--text); border-radius: 999px;
+  height: 40px; padding: 0 18px; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 10px 40px #0008, 0 0 0 1px #ffffff10;
+  transition: width .6s cubic-bezier(.34,1.56,.64,1), height .6s cubic-bezier(.34,1.56,.64,1), border-radius .6s;
+  overflow: hidden; white-space: nowrap; font-size: 15px; font-weight: 500;
+}
+.island .slot { display: none; align-items: center; gap: 10px; animation: fade .5s ease; }
+.island .slot.on { display: flex; }
+.island nav { display: flex; gap: 4px; }
+.island nav a { padding: 6px 12px; border-radius: 999px; color: var(--sub); font-size: 14px; transition: background .2s, color .2s; }
+.island nav a:hover { background: var(--high); color: var(--text); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.bars { display: flex; gap: 3px; align-items: flex-end; height: 16px; }
+.bars i { width: 3px; background: var(--accent); border-radius: 2px; animation: bar 1s ease-in-out infinite; }
+.bars i:nth-child(2) { animation-delay: .2s } .bars i:nth-child(3) { animation-delay: .4s } .bars i:nth-child(4) { animation-delay: .1s }
+.cover { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--deep)); }
+@keyframes bar { 0%,100% { height: 4px } 50% { height: 16px } }
+@keyframes fade { from { opacity: 0; transform: translateY(4px) } to { opacity: 1 } }
+
+/* Hero */
+.hero { min-height: 100vh; display: grid; place-items: center; text-align: center; position: relative; padding: 120px 0 80px; }
+.glow { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.glow::before, .glow::after {
+  content: ""; position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(100px); opacity: .35;
+  background: radial-gradient(circle, var(--deep), transparent 60%); top: -20vmax; left: -10vmax; animation: drift 18s ease-in-out infinite alternate;
+}
+.glow::after { background: radial-gradient(circle, var(--accent2), transparent 60%); top: auto; bottom: -25vmax; left: auto; right: -15vmax; animation-delay: -9s; }
+@keyframes drift { to { transform: translate(10vmax, 6vmax) scale(1.15) } }
+.logo {
+  width: 96px; height: 96px; border-radius: 32px; margin: 0 auto 28px; display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: var(--base); font-size: 52px; font-weight: 900;
+  box-shadow: 0 20px 60px #7a5cff55; animation: pop .9s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes pop { from { transform: scale(.4); opacity: 0 } }
+h1 { font-size: clamp(48px, 9vw, 112px); line-height: 1; letter-spacing: -.04em; font-weight: 800; }
+h1 span { background: linear-gradient(90deg, var(--accent), #fff 50%, var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200%; animation: shine 6s linear infinite; }
+@keyframes shine { to { background-position: -200% } }
+.lead { font-size: clamp(18px, 2.2vw, 22px); color: var(--sub); max-width: 640px; margin: 24px auto 40px; }
+.cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 28px; border-radius: 999px;
+  font-weight: 600; font-size: 17px; transition: transform .25s cubic-bezier(.34,1.56,.64,1), background .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-2px) scale(1.03); }
+.btn:active { transform: scale(.97); }
+.btn.primary { background: var(--accent); color: var(--base); box-shadow: 0 12px 40px #cdbdff40; }
+.btn.primary:hover { box-shadow: 0 16px 50px #cdbdff70; }
+.btn.ghost { background: var(--surface); }
+.btn.ghost:hover { background: var(--high); }
+.meta { margin-top: 18px; color: var(--sub); font-size: 14px; opacity: .8; }
+
+/* Shot */
+.showcase { margin-top: -40px; }
+.frame {
+  border-radius: var(--r); overflow: hidden; background: var(--surface); aspect-ratio: 16 / 10;
+  box-shadow: 0 40px 120px #000a, 0 0 0 1px #ffffff12; position: relative;
+}
+.frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .6s; }
+.thumbs { display: flex; gap: 10px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
+.thumbs button {
+  border: 0; background: var(--surface); color: var(--sub); font: inherit; font-size: 14px; padding: 8px 16px; border-radius: 999px; cursor: pointer; transition: .2s;
+}
+.thumbs button.on, .thumbs button:hover { background: var(--accent); color: var(--base); }
+
+section { padding: 110px 0; }
+h2 { font-size: clamp(34px, 5vw, 56px); letter-spacing: -.03em; line-height: 1.05; font-weight: 750; }
+.kicker { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; margin-bottom: 14px; }
+.sub { color: var(--sub); font-size: 18px; max-width: 620px; margin-top: 16px; }
+
+/* Features */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 50px; }
+.card {
+  background: var(--surface); border-radius: var(--r); padding: 30px; position: relative; overflow: hidden;
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), background .3s;
+}
+.card:hover { transform: translateY(-6px); background: var(--high); }
+.card .ic { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: #cdbdff22; color: var(--accent); font-size: 24px; margin-bottom: 18px; }
+.card h3 { font-size: 21px; margin-bottom: 8px; font-weight: 650; }
+.card p { color: var(--sub); font-size: 15.5px; }
+.card.big { grid-column: span 2; background: linear-gradient(135deg, #2b2340, var(--surface)); }
+@media (max-width: 700px) { .card.big { grid-column: auto } }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 50px; counter-reset: s; }
+.step { background: var(--surface); border-radius: var(--r); padding: 28px; counter-increment: s; }
+.step::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--base); font-weight: 800; margin-bottom: 16px; }
+.step h3 { font-size: 19px; margin-bottom: 6px; }
+.step p { color: var(--sub); font-size: 15px; }
+code { background: var(--high); padding: 2px 8px; border-radius: 8px; font-size: .9em; word-break: break-all; }
+
+.specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 40px; }
+.spec { border-left: 2px solid var(--accent); padding: 4px 0 4px 18px; }
+.spec b { display: block; font-size: 15px; } .spec span { color: var(--sub); font-size: 14px; }
+
+/* Final */
+.final { text-align: center; background: linear-gradient(180deg, transparent, #1a1528); border-radius: 48px; padding: 100px 24px; }
+.final h2 { font-size: clamp(44px, 8vw, 96px); }
+footer { padding: 50px 0 70px; color: var(--sub); font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+footer a { color: var(--accent); }
+.lang { background: var(--surface); border: 0; color: var(--sub); font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="island-bar">
+  <div class="island" id="island">
+    <div class="slot on" data-s="nav">
+      <span class="dot"></span><b>CanOS</b>
+      <nav><a href="#features" data-i="navFeatures">Features</a><a href="#install" data-i="navInstall">Install</a><a href="#download" data-i="navDownload">Download</a></nav>
+    </div>
+    <div class="slot" data-s="music"><span class="cover"></span><span data-i="islandMusic">Lofi beats to code to</span><span class="bars"><i></i><i></i><i></i><i></i></span></div>
+    <div class="slot" data-s="notif"><span class="dot"></span><span data-i="islandNotif">CanOS 1.0 is here</span></div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div class="logo">C</div>
+    <h1><span>Yes, I CanOS.</span></h1>
+    <p class="lead" data-i="lead">A fast, beautiful Linux system with its own desktop. Built on CachyOS, designed around the Living Island.</p>
+    <div class="cta">
+      <a class="btn primary" id="dl" href="#download">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>
+        <span data-i="download">Download CanOS 1.0</span>
+      </a>
+      <a class="btn ghost" href="https://github.com/tschaki11/canos-iso" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="meta" data-i="meta">Free &amp; open source · x86_64 · about 3 GB</p>
+  </div>
+</header>
+
+<div class="wrap showcase reveal">
+  <div class="frame"><img id="shot" src="screenshots/center.jpg" alt="CanOS desktop"></div>
+  <div class="thumbs" id="thumbs">
+    <button class="on" data-img="center" data-i="tCenter">Control Center</button>
+    <button data-img="wifi" data-i="tWifi">Wi-Fi</button>
+    <button data-img="audio" data-i="tAudio">Audio</button>
+    <button data-img="settings" data-i="tSettings">Settings</button>
+    <button data-img="welcome" data-i="tWelcome">Welcome</button>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker" data-i="fKicker">Features</p>
+      <h2 data-i="fTitle">Everything in one place.<br>Nothing in your way.</h2>
+      <p class="sub" data-i="fSub">Canvas is the desktop of CanOS. It was built from scratch to feel fast, calm and alive.</p>
+    </div>
+    <div class="grid">
+      <div class="card big reveal"><div class="ic">◖◗</div><h3>Living Island</h3><p data-i="f1">The heart of Canvas. Music, notifications, volume, battery and your workspaces – all in one island at the top that grows when something happens and gets out of the way when nothing does.</p></div>
+      <div class="card reveal"><div class="ic">⌘</div><h3 data-i="f2t">Control Center</h3><p data-i="f2">Wi-Fi, Bluetooth, audio devices, night light and power profiles. One click from anywhere.</p></div>
+      <div class="card reveal"><div class="ic">✦</div><h3 data-i="f3t">Themes</h3><p data-i="f3">Switch the whole look with Super + T. Colors flow through the entire system, even the boot menu.</p></div>
+      <div class="card reveal"><div class="ic">◔</div><h3 data-i="f4t">Notifications 2.0</h3><p data-i="f4">Grouped by app, with actions, inline replies and images. Do not disturb when you need focus.</p></div>
+      <div class="card reveal"><div class="ic">⚙</div><h3 data-i="f5t">Real settings</h3><p data-i="f5">Displays, touchpad, keyboard, default apps, account, time and updates – without touching a config file.</p></div>
+      <div class="card reveal"><div class="ic">⚡</div><h3 data-i="f6t">Fast by default</h3><p data-i="f6">Optimized CachyOS kernel and packages, Hyprland underneath and Btrfs for your files.</p></div>
+      <div class="card reveal"><div class="ic">⟳</div><h3 data-i="f7t">Updates in one click</h3><p data-i="f7">CanOS updates the system and your Flatpak apps from the settings.</p></div>
+      <div class="card reveal"><div class="ic">🔒</div><h3 data-i="f8t">Private &amp; secure</h3><p data-i="f8">No tracking, no account required. Lock screen, password dialogs and Secure Boot support.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kicker" data-i="iKicker">Install</p>
+      <h2 data-i="iTitle">Ready in three steps.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3 data-i="s1t">Download</h3><p data-i="s1">Get the ISO and check it with the SHA256 checksum.</p></div>
+      <div class="step reveal"><h3 data-i="s2t">Create a USB stick</h3><p data-i="s2">Write it with Ventoy, Fedora Media Writer or <code>dd</code>. At least 8 GB.</p></div>
+      <div class="step reveal"><h3 data-i="s3t">Boot &amp; install</h3><p data-i="s3">Start from the stick, try CanOS live and install it with a few clicks. Works offline.</p></div>
+    </div>
+    <div class="specs reveal">
+      <div class="spec"><b data-i="r1t">Processor</b><span data-i="r1">64-bit x86 (x86-64-v3 recommended)</span></div>
+      <div class="spec"><b data-i="r2t">Memory</b><span data-i="r2">4 GB, 8 GB recommended</span></div>
+      <div class="spec"><b data-i="r3t">Storage</b><span data-i="r3">30 GB free space</span></div>
+      <div class="spec"><b data-i="r4t">Boot</b><span data-i="r4">UEFI or BIOS</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <div class="final reveal">
+      <h2>Yes, I CanOS.</h2>
+      <p class="lead" data-i="dLead">CanOS is free and open source. Download it, try it live and make it yours.</p>
+      <div class="cta">
+        <a class="btn primary" id="dl2" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>
+          <span data-i="download">Download CanOS 1.0</span>
+        </a>
+        <a class="btn ghost" id="sha" href="#" data-i="checksum">SHA256 checksum</a>
+      </div>
+      <p class="meta"><span id="isoname">canos-1.0-x86_64.iso</span></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Serkan Can Polat · <span data-i="license">CanOS is licensed under GPL-3.0</span><br><span data-i="credits">Built on</span> <a href="https://cachyos.org" target="_blank" rel="noopener">CachyOS</a>, <a href="https://archlinux.org" target="_blank" rel="noopener">Arch Linux</a>, <a href="https://hyprland.org" target="_blank" rel="noopener">Hyprland</a> &amp; <a href="https://quickshell.org" target="_blank" rel="noopener">Quickshell</a>.</div>
+    <div><button class="lang" id="lang">Deutsch</button></div>
+  </div>
+</footer>
+
+<script>
+const ISO = "https://sourceforge.net/projects/canos/files/1.0/canos-1.0-x86_64.iso/download";
+const SHA = "https://sourceforge.net/projects/canos/files/1.0/canos-1.0-x86_64.iso.sha256/download";
+document.getElementById("dl2").href = ISO;
+document.getElementById("sha").href = SHA;
+
+const de = {
+  navFeatures: "Funktionen", navInstall: "Installieren", navDownload: "Download",
+  islandMusic: "Lofi zum Programmieren", islandNotif: "CanOS 1.0 ist da",
+  lead: "Ein schnelles, schönes Linux-System mit eigener Oberfläche. Gebaut auf CachyOS, gestaltet rund um die Living Island.",
+  download: "CanOS 1.0 herunterladen", meta: "Kostenlos & Open Source · x86_64 · etwa 3 GB",
+  tCenter: "Control-Center", tWifi: "WLAN", tAudio: "Audio", tSettings: "Einstellungen", tWelcome: "Willkommen",
+  fKicker: "Funktionen", fTitle: "Alles an einem Ort.<br>Nichts im Weg.",
+  fSub: "Canvas ist die Oberfläche von CanOS. Von Grund auf gebaut, damit sie sich schnell, ruhig und lebendig anfühlt.",
+  f1: "Das Herz von Canvas. Musik, Benachrichtigungen, Lautstärke, Akku und deine Arbeitsflächen – alles in einer Insel oben, die wächst, wenn etwas passiert, und verschwindet, wenn nichts los ist.",
+  f2t: "Control-Center", f2: "WLAN, Bluetooth, Audiogeräte, Nachtlicht und Energieprofile. Ein Klick von überall.",
+  f3t: "Themes", f3: "Wechsle den ganzen Look mit Super + T. Die Farben ziehen sich durchs ganze System, sogar durchs Bootmenü.",
+  f4t: "Benachrichtigungen 2.0", f4: "Nach App gruppiert, mit Aktionen, direkter Antwort und Bildern. Nicht stören, wenn du Ruhe brauchst.",
+  f5t: "Echte Einstellungen", f5: "Bildschirme, Touchpad, Tastatur, Standard-Apps, Konto, Uhrzeit und Updates – ohne eine Config-Datei anzufassen.",
+  f6t: "Schnell von Haus aus", f6: "Optimierter CachyOS-Kernel und Pakete, Hyprland darunter und Btrfs für deine Dateien.",
+  f7t: "Updates mit einem Klick", f7: "CanOS aktualisiert das System und deine Flatpak-Apps direkt aus den Einstellungen.",
+  f8t: "Privat & sicher", f8: "Kein Tracking, kein Konto nötig. Sperrbildschirm, Passwortdialoge und Secure-Boot-Unterstützung.",
+  iKicker: "Installieren", iTitle: "In drei Schritten fertig.",
+  s1t: "Herunterladen", s1: "Lade die ISO herunter und prüfe sie mit der SHA256-Prüfsumme.",
+  s2t: "USB-Stick erstellen", s2: "Schreibe sie mit Ventoy, Fedora Media Writer oder <code>dd</code>. Mindestens 8 GB.",
+  s3t: "Starten & installieren", s3: "Starte vom Stick, probiere CanOS live aus und installiere es mit ein paar Klicks. Funktioniert offline.",
+  r1t: "Prozessor", r1: "64-Bit x86 (x86-64-v3 empfohlen)", r2t: "Arbeitsspeicher", r2: "4 GB, 8 GB empfohlen",
+  r3t: "Speicher", r3: "30 GB frei", r4t: "Start", r4: "UEFI oder BIOS",
+  dLead: "CanOS ist kostenlos und Open Source. Lade es herunter, probiere es live aus und mach es zu deinem.",
+  checksum: "SHA256-Prüfsumme", license: "CanOS steht unter der GPL-3.0", credits: "Gebaut auf"
+};
+const en = {};
+document.querySelectorAll("[data-i]").forEach(e => en[e.dataset.i] = e.innerHTML);
+let lang = localStorage.getItem("lang") || (navigator.language.startsWith("de") ? "de" : "en");
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem("lang", l) } catch (e) {}
+  document.documentElement.lang = l;
+  const d = l === "de" ? de : en;
+  document.querySelectorAll("[data-i]").forEach(e => { if (d[e.dataset.i]) e.innerHTML = d[e.dataset.i] });
+  document.getElementById("lang").textContent = l === "de" ? "English" : "Deutsch";
+}
+document.getElementById("lang").onclick = () => setLang(lang === "de" ? "en" : "de");
+setLang(lang);
+
+// Living Island cycle
+const island = document.getElementById("island");
+const slots = [...island.querySelectorAll(".slot")];
+let idx = 0, hover = false;
+island.onmouseenter = () => { hover = true; show(0) };
+island.onmouseleave = () => hover = false;
+function show(i) {
+  idx = i;
+  const w0 = island.offsetWidth;
+  slots.forEach((s, j) => s.classList.toggle("on", j === i));
+  island.style.width = "auto";
+  const w1 = island.offsetWidth;
+  island.style.width = w0 + "px";
+  island.offsetWidth;
+  island.style.width = w1 + "px";
+}
+show(0);
+setInterval(() => { if (!hover && scrollY < 200) show((idx + 1) % slots.length) }, 3600);
+
+// Screenshots
+const shot = document.getElementById("shot");
+document.querySelectorAll("#thumbs button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("#thumbs button").forEach(x => x.classList.toggle("on", x === b));
+  shot.style.opacity = 0;
+  setTimeout(() => { shot.src = "screenshots/" + b.dataset.img + ".jpg"; shot.onload = () => shot.style.opacity = 1 }, 250);
+});
+
+// Reveal
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) } }), { threshold: .15 });
+document.querySelectorAll(".reveal").forEach(e => io.observe(e));
+</script>
+</body>
+</html>
