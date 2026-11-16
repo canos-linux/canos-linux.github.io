@@ -158,7 +158,7 @@ footer a { color: var(--accent); }
       <nav><a href="#features" data-i="navFeatures">Features</a><a href="#install" data-i="navInstall">Install</a><a href="#faq">FAQ</a><a href="#download" data-i="navDownload">Download</a></nav>
     </div>
     <div class="slot" data-s="music"><span class="cover"></span><span data-i="islandMusic">Lofi beats to code to</span><span class="bars"><i></i><i></i><i></i><i></i></span></div>
-    <div class="slot" data-s="notif"><span class="dot"></span><span data-i="islandNotif">CanOS 1.0 is here</span></div>
+    <div class="slot" data-s="notif"><span class="dot"></span><span data-i="islandNotif">CanOS 1.0.1 is here</span></div>
   </div>
 </div>
 
@@ -171,7 +171,7 @@ footer a { color: var(--accent); }
     <div class="cta">
       <a class="btn primary" id="dl" href="#download">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>
-        <span data-i="download">Download CanOS 1.0</span>
+        <span data-i="download">Download CanOS 1.0.1</span>
       </a>
       <a class="btn ghost" href="https://github.com/tschaki11/canos-iso" target="_blank" rel="noopener">GitHub</a>
     </div>
@@ -243,6 +243,7 @@ footer a { color: var(--accent); }
       <details class="reveal"><summary data-i="q4">Does it work with NVIDIA graphics?</summary><p data-i="a4">Yes. CanOS keeps the NVIDIA drivers when it finds an NVIDIA card, including laptops with two graphics chips.</p></details>
       <details class="reveal"><summary data-i="q5">What is CanOS based on?</summary><p data-i="a5">On CachyOS and Arch Linux. You get their fast kernel and up-to-date packages, plus Canvas – the desktop made for CanOS.</p></details>
       <details class="reveal"><summary data-i="q6">How do I update?</summary><p data-i="a6">Open Settings › About and click Update. Or run <code>canos-update</code> in the terminal.</p></details>
+      <details class="reveal"><summary data-i="q8">I installed CanOS 1.0 – how do I get updates?</summary><p data-i="a8">Open a terminal and run <code>curl -sL https://tschaki11.github.io/canos/repo.sh | sudo bash</code> once. After that, Canvas and the CanOS tools update together with the rest of the system.</p></details>
       <details class="reveal"><summary data-i="q7">I found a bug. What now?</summary><p data-i="a7">Please report it on GitHub – a short description and, if you can, a photo or screenshot help a lot.</p></details>
     </div>
   </div>
@@ -256,12 +257,12 @@ footer a { color: var(--accent); }
       <div class="cta">
         <a class="btn primary" id="dl2" href="#">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>
-          <span data-i="download">Download CanOS 1.0</span>
+          <span data-i="download">Download CanOS 1.0.1</span>
         </a>
         <a class="btn ghost" id="sha" href="#" data-i="checksum">SHA256 checksum</a>
         <a class="btn ghost" href="https://github.com/tschaki11/canos-iso/issues" target="_blank" rel="noopener" data-i="bug">Report a bug</a>
       </div>
-      <p class="meta"><span id="isoname">canos-1.0-x86_64.iso</span></p>
+      <p class="meta"><span id="isoname">canos-1.0.1-x86_64.iso</span></p>
     </div>
   </div>
 </section>
@@ -274,18 +275,18 @@ footer a { color: var(--accent); }
 </footer>
 
 <script>
-const ISO = "https://sourceforge.net/projects/canos/files/1.0/canos-1.0-x86_64.iso/download";
+const ISO = "https://sourceforge.net/projects/canos/files/1.0.1/canos-1.0.1-x86_64.iso/download";
 const TIKTOK = "https://www.tiktok.com/@canos.linux";
-const SHA = "https://sourceforge.net/projects/canos/files/1.0/canos-1.0-x86_64.iso.sha256/download";
+const SHA = "https://sourceforge.net/projects/canos/files/1.0.1/canos-1.0.1-x86_64.iso.sha256/download";
 document.getElementById("dl2").href = ISO;
 document.getElementById("sha").href = SHA;
 if (TIKTOK) { const t = document.getElementById("tiktok"); t.href = TIKTOK; t.hidden = false; }
 
 const de = {
   navFeatures: "Funktionen", navInstall: "Installieren", navDownload: "Download",
-  islandMusic: "Lofi zum Programmieren", islandNotif: "CanOS 1.0 ist da",
+  islandMusic: "Lofi zum Programmieren", islandNotif: "CanOS 1.0.1 ist da",
   lead: "Ein schnelles, schönes Linux-System mit eigener Oberfläche. Gebaut auf CachyOS, gestaltet rund um die Living Island.",
-  download: "CanOS 1.0 herunterladen", meta: "Kostenlos & Open Source · x86_64 · etwa 3 GB",
+  download: "CanOS 1.0.1 herunterladen", meta: "Kostenlos & Open Source · x86_64 · etwa 3 GB",
   tCenter: "Control-Center", tWifi: "WLAN", tAudio: "Audio", tSettings: "Einstellungen", tWelcome: "Willkommen",
   fKicker: "Funktionen", fTitle: "Alles an einem Ort.<br>Nichts im Weg.",
   fSub: "Canvas ist die Oberfläche von CanOS. Von Grund auf gebaut, damit sie sich schnell, ruhig und lebendig anfühlt.",
@@ -312,6 +313,7 @@ const de = {
   q4: "Funktioniert es mit NVIDIA-Grafik?", a4: "Ja. CanOS behält die NVIDIA-Treiber, wenn eine NVIDIA-Karte gefunden wird – auch bei Laptops mit zwei Grafikchips.",
   q5: "Worauf basiert CanOS?", a5: "Auf CachyOS und Arch Linux. Du bekommst deren schnellen Kernel und aktuelle Pakete – dazu Canvas, die Oberfläche von CanOS.",
   q6: "Wie aktualisiere ich?", a6: "Öffne Einstellungen › Über und klicke auf Aktualisieren. Oder gib <code>canos-update</code> im Terminal ein.",
+  q8: "Ich habe CanOS 1.0 installiert – wie bekomme ich Updates?", a8: "Öffne ein Terminal und gib einmal <code>curl -sL https://tschaki11.github.io/canos/repo.sh | sudo bash</code> ein. Danach werden Canvas und die CanOS-Tools zusammen mit dem restlichen System aktualisiert.",
   q7: "Ich habe einen Fehler gefunden. Was nun?", a7: "Bitte melde ihn auf GitHub – eine kurze Beschreibung und wenn möglich ein Foto oder Screenshot helfen sehr."
 };
 const en = {};
