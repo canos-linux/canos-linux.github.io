@@ -7,7 +7,7 @@
 <meta name="description" content="CanOS is a fast, beautiful Linux system built on CachyOS with Canvas, its own desktop and the Living Island.">
 <meta property="og:title" content="CanOS – Yes, I CanOS.">
 <meta property="og:description" content="A fast, beautiful Linux system with its own desktop, Canvas.">
-<meta property="og:image" content="screenshots/center.jpg">
+<meta property="og:image" content="screenshots/desktop.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -158,7 +158,7 @@ footer a { color: var(--accent); }
       <nav><a href="#features" data-i="navFeatures">Features</a><a href="#install" data-i="navInstall">Install</a><a href="#faq">FAQ</a><a href="#download" data-i="navDownload">Download</a></nav>
     </div>
     <div class="slot" data-s="music"><span class="cover"></span><span data-i="islandMusic">Lofi beats to code to</span><span class="bars"><i></i><i></i><i></i><i></i></span></div>
-    <div class="slot" data-s="notif"><span class="dot"></span><span data-i="islandNotif">CanOS 1.0.3 is here</span></div>
+    <div class="slot" data-s="notif"><span class="dot"></span><span data-i="islandNotif">CanOS 1.1.0 is here</span></div>
   </div>
 </div>
 
@@ -171,7 +171,7 @@ footer a { color: var(--accent); }
     <div class="cta">
       <a class="btn primary" id="dl" href="#download">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>
-        <span data-i="download">Download CanOS 1.0.3</span>
+        <span data-i="download">Download CanOS 1.1.0</span>
       </a>
       <a class="btn ghost" href="https://github.com/canos-linux/canos-iso" target="_blank" rel="noopener">GitHub</a>
     </div>
@@ -180,9 +180,13 @@ footer a { color: var(--accent); }
 </header>
 
 <div class="wrap showcase reveal">
-  <div class="frame"><img id="shot" src="screenshots/center.jpg" alt="CanOS desktop"></div>
+  <div class="frame"><img id="shot" src="screenshots/desktop.jpg" alt="CanOS desktop"></div>
   <div class="thumbs" id="thumbs">
-    <button class="on" data-img="center" data-i="tCenter">Control Center</button>
+    <button class="on" data-img="desktop" data-i="tDesktop">Desktop</button>
+    <button data-img="store" data-i="tStore">Store</button>
+    <button data-img="themes" data-i="tThemes">Themes</button>
+    <button data-img="overview" data-i="tOverview">Overview</button>
+    <button data-img="center" data-i="tCenter">Control Center</button>
     <button data-img="wifi" data-i="tWifi">Wi-Fi</button>
     <button data-img="audio" data-i="tAudio">Audio</button>
     <button data-img="settings" data-i="tSettings">Settings</button>
@@ -206,6 +210,11 @@ footer a { color: var(--accent); }
       <div class="card reveal"><div class="ic">⚡</div><h3 data-i="f6t">Fast by default</h3><p data-i="f6">Optimized CachyOS kernel and packages, Hyprland underneath and Btrfs for your files.</p></div>
       <div class="card reveal"><div class="ic">⟳</div><h3 data-i="f7t">Updates in one click</h3><p data-i="f7">CanOS updates the system and your Flatpak apps from the settings.</p></div>
       <div class="card reveal"><div class="ic">🔒</div><h3 data-i="f8t">Private &amp; secure</h3><p data-i="f8">No tracking, no account required. Lock screen and password dialogs built in.</p></div>
+      <div class="card big reveal"><div class="ic">◎</div><h3 data-i="f9t">Canvas Store</h3><p data-i="f9">Steam, Discord, Spotify, OBS and thousands more – one click from the Store, from the CanOS repos and Flathub.</p></div>
+      <div class="card reveal"><div class="ic">✧</div><h3 data-i="f10t">Your own themes</h3><p data-i="f10">Turn any picture or video into a theme. Colors, window borders, mouse cursor and login screen follow it.</p></div>
+      <div class="card reveal"><div class="ic">▦</div><h3 data-i="f11t">Widgets</h3><p data-i="f11">Clock, weather, system, calendar and music with vinyl and synced lyrics – put them anywhere, per theme.</p></div>
+      <div class="card reveal"><div class="ic">↺</div><h3 data-i="f12t">Recovery</h3><p data-i="f12">A snapshot before every update. If something breaks, go back with one click.</p></div>
+      <div class="card reveal"><div class="ic">▣</div><h3 data-i="f13t">Overview &amp; recording</h3><p data-i="f13">All workspaces with live previews (Super + Tab) and screen recording built in.</p></div>
     </div>
   </div>
 </section>
@@ -257,12 +266,12 @@ footer a { color: var(--accent); }
       <div class="cta">
         <a class="btn primary" id="dl2" href="#">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg>
-          <span data-i="download">Download CanOS 1.0.3</span>
+          <span data-i="download">Download CanOS 1.1.0</span>
         </a>
         <a class="btn ghost" id="sha" href="#" data-i="checksum">SHA256 checksum</a>
         <a class="btn ghost" href="https://github.com/canos-linux/canos-iso/issues" target="_blank" rel="noopener" data-i="bug">Report a bug</a>
       </div>
-      <p class="meta"><span id="isoname">canos-1.0.3-x86_64.iso</span></p>
+      <p class="meta"><span id="isoname">canos-1.1.0-x86_64.iso</span></p>
     </div>
   </div>
 </section>
@@ -275,18 +284,18 @@ footer a { color: var(--accent); }
 </footer>
 
 <script>
-const ISO = "https://sourceforge.net/projects/canos/files/1.0.3/canos-1.0.3-x86_64.iso/download";
+const ISO = "https://sourceforge.net/projects/canos/files/1.1.0/canos-1.1.0-x86_64.iso/download";
 const TIKTOK = "https://www.tiktok.com/@canos.linux";
-const SHA = "https://sourceforge.net/projects/canos/files/1.0.3/canos-1.0.3-x86_64.iso.sha256/download";
+const SHA = "https://sourceforge.net/projects/canos/files/1.1.0/canos-1.1.0-x86_64.iso.sha256/download";
 document.getElementById("dl2").href = ISO;
 document.getElementById("sha").href = SHA;
 if (TIKTOK) { const t = document.getElementById("tiktok"); t.href = TIKTOK; t.hidden = false; }
 
 const de = {
   navFeatures: "Funktionen", navInstall: "Installieren", navDownload: "Download",
-  islandMusic: "Lofi zum Programmieren", islandNotif: "CanOS 1.0.3 ist da",
+  islandMusic: "Lofi zum Programmieren", islandNotif: "CanOS 1.1.0 ist da",
   lead: "Ein schnelles, schönes Linux-System mit eigener Oberfläche. Gebaut auf CachyOS, gestaltet rund um die Living Island.",
-  download: "CanOS 1.0.3 herunterladen", meta: "Kostenlos & Open Source · x86_64 · etwa 3 GB",
+  download: "CanOS 1.1.0 herunterladen", meta: "Kostenlos & Open Source · x86_64 · etwa 3 GB",
   tCenter: "Control-Center", tWifi: "WLAN", tAudio: "Audio", tSettings: "Einstellungen", tWelcome: "Willkommen",
   fKicker: "Funktionen", fTitle: "Alles an einem Ort.<br>Nichts im Weg.",
   fSub: "Canvas ist die Oberfläche von CanOS. Von Grund auf gebaut, damit sie sich schnell, ruhig und lebendig anfühlt.",
@@ -297,6 +306,12 @@ const de = {
   f5t: "Echte Einstellungen", f5: "Bildschirme, Touchpad, Tastatur, Standard-Apps, Konto, Uhrzeit und Updates – ohne eine Config-Datei anzufassen.",
   f6t: "Schnell von Haus aus", f6: "Optimierter CachyOS-Kernel und Pakete, Hyprland darunter und Btrfs für deine Dateien.",
   f7t: "Updates mit einem Klick", f7: "CanOS aktualisiert das System und deine Flatpak-Apps direkt aus den Einstellungen.",
+  tDesktop: "Desktop", tStore: "Store", tThemes: "Themes", tOverview: "Übersicht",
+  f9t: "Canvas Store", f9: "Steam, Discord, Spotify, OBS und tausende mehr – mit einem Klick aus dem Store, aus den CanOS-Paketquellen und Flathub.",
+  f10t: "Eigene Themes", f10: "Mach aus jedem Bild oder Video ein Theme. Farben, Fensterränder, Mauszeiger und Login-Bildschirm passen sich an.",
+  f11t: "Widgets", f11: "Uhr, Wetter, System, Kalender und Musik mit Schallplatte und Songtext – überall hin, pro Theme.",
+  f12t: "Wiederherstellung", f12: "Vor jedem Update ein Snapshot. Wenn etwas kaputt geht, mit einem Klick zurück.",
+  f13t: "Übersicht & Aufnahme", f13: "Alle Arbeitsflächen mit Live-Vorschau (Super + Tab) und Bildschirmaufnahme eingebaut.",
   f8t: "Privat & sicher", f8: "Kein Tracking, kein Konto nötig. Sperrbildschirm und Passwortdialoge inklusive.",
   iKicker: "Installieren", iTitle: "In drei Schritten fertig.",
   s1t: "Herunterladen", s1: "Lade die ISO herunter und prüfe sie mit der SHA256-Prüfsumme.",
