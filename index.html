@@ -361,5 +361,6 @@ document.querySelectorAll("#thumbs button").forEach(b => b.onclick = () => {
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) } }), { threshold: .15 });
 document.querySelectorAll(".reveal").forEach(e => io.observe(e));
 </script>
+<script data-goatcounter="https://canos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
